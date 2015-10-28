@@ -1,0 +1,145 @@
+/**********************
+ *** Hamburger Icon ***
+ **********************/
+
+// Icon Settings
+$icon-base-size: 16px;
+
+$icon-border-radius: 0;
+$icon-background-color: #FFF;
+$icon-background-color-active: #FFF;
+
+// Bar Settings
+$bar-border-radius: 30px;
+$bar-background-color: #000;
+$bar-background-color-active: #000;
+
+// Misc
+$multipliers: 1, 2, 3, 4, 5;
+$transistion-duration: 0.2s;
+
+// Functions for size manipulation
+@function size($multiplier) {
+  @return $icon-base-size * $multiplier;
+}
+
+@function thickness($multiplier) {
+  @return round(size($multiplier) / 10);
+}
+
+@function v-padding($multiplier) {
+  @return round(size($multiplier) / 8);
+}
+
+@function h-padding($multiplier) {
+  @return round(size($multiplier) / 5);
+}
+
+.hamburger {
+   display: block;
+   position: relative;
+   margin: 0;
+   padding: 0;
+   width: $icon-base-size;
+   height: $icon-base-size;
+   background-color: $icon-background-color;
+   border-radius: $icon-border-radius;
+
+   // Hide span text
+   font-size: 0;
+   text-indent: 100%;
+   overflow: hidden;
+
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   box-shadow: none;
+   border-radius: none;
+   border: none;
+   cursor: pointer;
+   transition: background $transistion-duration;
+
+   span {
+      display: block;
+      position: absolute;
+      top: floor(($icon-base-size / 2) - (thickness(1) / 2));
+      left: h-padding(1);
+      right: h-padding(1);
+      height: thickness(1);
+      background: $bar-background-color;
+      border-radius: $bar-border-radius;
+      transition: background 0s $transistion-duration;
+
+      // Pseudo elements (top and bottom)
+      &::before, &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: thickness(1);
+        border-radius: $bar-border-radius;
+        background-color: $bar-background-color;
+        transition-duration: $transistion-duration, $transistion-duration;
+        transition-delay: $transistion-duration, 0s;
+        transition-property: all, transform;
+      }
+
+      &::before {
+        top: 0 - thickness(1) - v-padding(1);
+      }
+
+      &::after {
+        bottom: 0 - thickness(1) - v-padding(1);
+      }
+   }
+
+   &:focus {
+     outline: none;
+   }
+
+   &.active {
+      background-color: $icon-background-color-active;
+
+      span {
+         background: none;
+         &::before {
+           top: 0 !important;
+           background: $bar-background-color-active;
+           transform: rotate(45deg);
+           transition-delay: 0s, $transistion-duration;
+         }
+
+         &::after {
+           bottom: 0 !important;
+           background: $bar-background-color-active;
+           transform: rotate(-45deg);
+           transition-delay: 0s, $transistion-duration;
+         }
+      }
+   }
+}
+
+@each $i in $multipliers {
+   .ai.ai-#{$i}x.hamburger {
+      width: size($i);
+      height: size($i);
+
+      span {
+         top: floor((size($i) / 2) - (thickness($i) / 2));
+         left: h-padding($i);
+         right: h-padding($i);
+         height: thickness($i);
+
+         &::before {
+           height: thickness($i);
+           top: 0 - thickness($i) - v-padding($i);
+         }
+
+         &::after {
+           height: thickness($i);
+           bottom: 0 - thickness($i) - v-padding($i);
+         }
+      }
+   }
+}

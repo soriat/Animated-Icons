@@ -1,0 +1,16 @@
+.hamburger {
+   background-color: #ED8C2B;
+
+   span::before, span, span::after {
+      background-color: #FFFFFF;
+   }
+
+   &.active {
+      background-color: #CF4A30;
+
+      // The middle bar (span) disappears.
+      span::before, span::after {
+         background-color: #FFFFFF;
+      }
+   }
+}
