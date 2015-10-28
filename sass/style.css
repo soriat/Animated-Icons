@@ -8,18 +8,9 @@
   padding: 0;
   width: 16px;
   height: 16px;
+  cursor: pointer;
   background-color: #FFF;
   border-radius: 0;
-  font-size: 0;
-  text-indent: 100%;
-  overflow: hidden;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  box-shadow: none;
-  border-radius: none;
-  border: none;
-  cursor: pointer;
   transition: background 0.2s; }
   .hamburger span {
     display: block;
@@ -80,64 +71,109 @@
       bottom: -4px; }
 
 .ai.ai-2x.hamburger {
-  width: 32px;
-  height: 32px; }
+  width: 24px;
+  height: 24px; }
   .ai.ai-2x.hamburger span {
-    top: 14px;
-    left: 6px;
-    right: 6px;
-    height: 3px; }
+    top: 11px;
+    left: 5px;
+    right: 5px;
+    height: 2px; }
     .ai.ai-2x.hamburger span::before {
-      height: 3px;
-      top: -7px; }
+      height: 2px;
+      top: -5px; }
     .ai.ai-2x.hamburger span::after {
-      height: 3px;
-      bottom: -7px; }
+      height: 2px;
+      bottom: -5px; }
 
 .ai.ai-3x.hamburger {
+  width: 36px;
+  height: 36px; }
+  .ai.ai-3x.hamburger span {
+    top: 16px;
+    left: 7px;
+    right: 7px;
+    height: 4px; }
+    .ai.ai-3x.hamburger span::before {
+      height: 4px;
+      top: -9px; }
+    .ai.ai-3x.hamburger span::after {
+      height: 4px;
+      bottom: -9px; }
+
+.ai.ai-4x.hamburger {
   width: 48px;
   height: 48px; }
-  .ai.ai-3x.hamburger span {
+  .ai.ai-4x.hamburger span {
     top: 21px;
     left: 10px;
     right: 10px;
     height: 5px; }
-    .ai.ai-3x.hamburger span::before {
+    .ai.ai-4x.hamburger span::before {
       height: 5px;
       top: -11px; }
-    .ai.ai-3x.hamburger span::after {
+    .ai.ai-4x.hamburger span::after {
       height: 5px;
       bottom: -11px; }
 
-.ai.ai-4x.hamburger {
-  width: 64px;
-  height: 64px; }
-  .ai.ai-4x.hamburger span {
-    top: 29px;
-    left: 13px;
-    right: 13px;
-    height: 6px; }
-    .ai.ai-4x.hamburger span::before {
-      height: 6px;
-      top: -14px; }
-    .ai.ai-4x.hamburger span::after {
-      height: 6px;
-      bottom: -14px; }
-
 .ai.ai-5x.hamburger {
-  width: 80px;
-  height: 80px; }
+  width: 96px;
+  height: 96px; }
   .ai.ai-5x.hamburger span {
-    top: 36px;
-    left: 16px;
-    right: 16px;
-    height: 8px; }
+    top: 43px;
+    left: 19px;
+    right: 19px;
+    height: 10px; }
     .ai.ai-5x.hamburger span::before {
-      height: 8px;
-      top: -18px; }
+      height: 10px;
+      top: -22px; }
     .ai.ai-5x.hamburger span::after {
-      height: 8px;
-      bottom: -18px; }
+      height: 10px;
+      bottom: -22px; }
+
+.ai.ai-6x.hamburger {
+  width: 128px;
+  height: 128px; }
+  .ai.ai-6x.hamburger span {
+    top: 57px;
+    left: 26px;
+    right: 26px;
+    height: 13px; }
+    .ai.ai-6x.hamburger span::before {
+      height: 13px;
+      top: -29px; }
+    .ai.ai-6x.hamburger span::after {
+      height: 13px;
+      bottom: -29px; }
+
+.ai.ai-7x.hamburger {
+  width: 256px;
+  height: 256px; }
+  .ai.ai-7x.hamburger span {
+    top: 115px;
+    left: 51px;
+    right: 51px;
+    height: 26px; }
+    .ai.ai-7x.hamburger span::before {
+      height: 26px;
+      top: -58px; }
+    .ai.ai-7x.hamburger span::after {
+      height: 26px;
+      bottom: -58px; }
+
+.ai.ai-8x.hamburger {
+  width: 512px;
+  height: 512px; }
+  .ai.ai-8x.hamburger span {
+    top: 230px;
+    left: 102px;
+    right: 102px;
+    height: 51px; }
+    .ai.ai-8x.hamburger span::before {
+      height: 51px;
+      top: -115px; }
+    .ai.ai-8x.hamburger span::after {
+      height: 51px;
+      bottom: -115px; }
 
 .hamburger {
   background-color: #ED8C2B; }

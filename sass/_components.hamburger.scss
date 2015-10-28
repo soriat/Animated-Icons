@@ -15,24 +15,25 @@ $bar-background-color: #000;
 $bar-background-color-active: #000;
 
 // Misc
-$multipliers: 1, 2, 3, 4, 5;
+$magnification-indexes: 1, 2, 3, 4, 5, 6, 7, 8;
+$magnification-values: 16, 24, 36, 48, 96, 128, 256, 512;
 $transistion-duration: 0.2s;
 
 // Functions for size manipulation
-@function size($multiplier) {
-  @return $icon-base-size * $multiplier;
+@function size($index) {
+  @return 1px * nth($magnification-values, $index);
 }
 
-@function thickness($multiplier) {
-  @return round(size($multiplier) / 10);
+@function thickness($index) {
+  @return round(size($index) / 10);
 }
 
-@function v-padding($multiplier) {
-  @return round(size($multiplier) / 8);
+@function v-padding($index) {
+  @return round(size($index) / 8);
 }
 
-@function h-padding($multiplier) {
-  @return round(size($multiplier) / 5);
+@function h-padding($index) {
+  @return round(size($index) / 5);
 }
 
 .hamburger {
@@ -42,21 +43,9 @@ $transistion-duration: 0.2s;
    padding: 0;
    width: $icon-base-size;
    height: $icon-base-size;
+   cursor: pointer;
    background-color: $icon-background-color;
    border-radius: $icon-border-radius;
-
-   // Hide span text
-   font-size: 0;
-   text-indent: 100%;
-   overflow: hidden;
-
-   -webkit-appearance: none;
-   -moz-appearance: none;
-   appearance: none;
-   box-shadow: none;
-   border-radius: none;
-   border: none;
-   cursor: pointer;
    transition: background $transistion-duration;
 
    span {
@@ -120,7 +109,7 @@ $transistion-duration: 0.2s;
    }
 }
 
-@each $i in $multipliers {
+@each $i in $magnification-indexes {
    .ai.ai-#{$i}x.hamburger {
       width: size($i);
       height: size($i);

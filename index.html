@@ -13,14 +13,11 @@
    </head>
 
    <body>
-      <div class="ai ai-2x hamburger"></div>
+      <i class="ai ai-5x hamburger"></i>
 
       <script>
          $('.ai').each(function(i) {
-            if ($(this).children().length === 0) {
-               $(this).append('<span>Placeholder<\/span>');
-            }
-
+            $(this).append('<span><\/span>');
             $(this).click(function() {
                $(this).toggleClass('active');
             });
