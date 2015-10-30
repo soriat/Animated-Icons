@@ -17,7 +17,7 @@ $bar-background-color-active: #000;
 // Misc
 $magnification-indexes: 1, 2, 3, 4, 5, 6, 7, 8;
 $magnification-values: 16, 24, 36, 48, 96, 128, 256, 512;
-$transistion-duration: 0.2s;
+$transition-duration: 0.2s;
 
 // Functions for size manipulation
 @function size($index) {
@@ -46,7 +46,7 @@ $transistion-duration: 0.2s;
    cursor: pointer;
    background-color: $icon-background-color;
    border-radius: $icon-border-radius;
-   transition: background $transistion-duration;
+   transition: background $transition-duration;
 
    span {
       display: block;
@@ -57,7 +57,7 @@ $transistion-duration: 0.2s;
       height: thickness(1);
       background: $bar-background-color;
       border-radius: $bar-border-radius;
-      transition: background 0s $transistion-duration;
+      transition: background 0s $transition-duration;
 
       // Pseudo elements (top and bottom)
       &::before, &::after {
@@ -69,8 +69,8 @@ $transistion-duration: 0.2s;
         height: thickness(1);
         border-radius: $bar-border-radius;
         background-color: $bar-background-color;
-        transition-duration: $transistion-duration, $transistion-duration;
-        transition-delay: $transistion-duration, 0s;
+        transition-duration: $transition-duration, $transition-duration;
+        transition-delay: $transition-duration, 0s;
         transition-property: all, transform;
       }
 
@@ -87,6 +87,9 @@ $transistion-duration: 0.2s;
      outline: none;
    }
 
+   &:hover {
+   }
+
    &.active {
       background-color: $icon-background-color-active;
 
@@ -96,21 +99,22 @@ $transistion-duration: 0.2s;
            top: 0 !important;
            background: $bar-background-color-active;
            transform: rotate(45deg);
-           transition-delay: 0s, $transistion-duration;
+           transition-delay: 0s, $transition-duration;
          }
 
          &::after {
            bottom: 0 !important;
            background: $bar-background-color-active;
            transform: rotate(-45deg);
-           transition-delay: 0s, $transistion-duration;
+           transition-delay: 0s, $transition-duration;
          }
       }
    }
 }
 
 @each $i in $magnification-indexes {
-   .ai.ai-#{$i}x.hamburger {
+   .ai.ai-#{$i}x.hamburger,
+   .ai.ai-#{nth($magnification-values, $i)}px.hamburger {
       width: size($i);
       height: size($i);
 
