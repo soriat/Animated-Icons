@@ -2,9 +2,9 @@
  *** Hamburger Icon ***
  **********************/
 
-// Icon Settings
-$icon-base-size: 16px;
+@import "generic.mixins";
 
+// Icon Settings
 $icon-border-radius: 0;
 $icon-background-color: #FFF;
 $icon-background-color-active: #FFF;
@@ -15,25 +15,21 @@ $bar-background-color: #000;
 $bar-background-color-active: #000;
 
 // Misc
-$magnification-indexes: 1, 2, 3, 4, 5, 6, 7, 8;
-$magnification-values: 16, 24, 36, 48, 96, 128, 256, 512;
+$magnifications: 16px, 24px, 32px, 48px, 64px, 96px, 128px, 256px, 512px, 1024px;
 $transition-duration: 0.2s;
 
 // Functions for size manipulation
-@function size($index) {
-  @return 1px * nth($magnification-values, $index);
+// Change these values to alter burger shape
+@function thickness($size) {
+  @return round($size / 10);
 }
 
-@function thickness($index) {
-  @return round(size($index) / 10);
+@function v-padding($size) {
+  @return round($size / 8);
 }
 
-@function v-padding($index) {
-  @return round(size($index) / 8);
-}
-
-@function h-padding($index) {
-  @return round(size($index) / 5);
+@function h-padding($size) {
+  @return round($size / 5);
 }
 
 .hamburger {
@@ -41,23 +37,17 @@ $transition-duration: 0.2s;
    position: relative;
    margin: 0;
    padding: 0;
-   width: $icon-base-size;
-   height: $icon-base-size;
    cursor: pointer;
    background-color: $icon-background-color;
    border-radius: $icon-border-radius;
-   transition: background $transition-duration;
+   @include transition(background $transition-duration);
 
    span {
       display: block;
       position: absolute;
-      top: floor(($icon-base-size / 2) - (thickness(1) / 2));
-      left: h-padding(1);
-      right: h-padding(1);
-      height: thickness(1);
       background: $bar-background-color;
       border-radius: $bar-border-radius;
-      transition: background 0s $transition-duration;
+      @include transition(background 0s $transition-duration);
 
       // Pseudo elements (top and bottom)
       &::before, &::after {
@@ -66,28 +56,16 @@ $transition-duration: 0.2s;
         position: absolute;
         left: 0;
         width: 100%;
-        height: thickness(1);
         border-radius: $bar-border-radius;
         background-color: $bar-background-color;
         transition-duration: $transition-duration, $transition-duration;
         transition-delay: $transition-duration, 0s;
         transition-property: all, transform;
       }
-
-      &::before {
-        top: 0 - thickness(1) - v-padding(1);
-      }
-
-      &::after {
-        bottom: 0 - thickness(1) - v-padding(1);
-      }
    }
 
    &:focus {
      outline: none;
-   }
-
-   &:hover {
    }
 
    &.active {
@@ -98,40 +76,42 @@ $transition-duration: 0.2s;
          &::before {
            top: 0 !important;
            background: $bar-background-color-active;
-           transform: rotate(45deg);
+           @include rotate(45deg);
            transition-delay: 0s, $transition-duration;
          }
 
          &::after {
            bottom: 0 !important;
            background: $bar-background-color-active;
-           transform: rotate(-45deg);
+           @include rotate(-45deg);
            transition-delay: 0s, $transition-duration;
          }
       }
    }
-}
 
-@each $i in $magnification-indexes {
-   .ai.ai-#{$i}x.hamburger,
-   .ai.ai-#{nth($magnification-values, $i)}px.hamburger {
-      width: size($i);
-      height: size($i);
+   @each $i in $magnifications {
+      $index: index($magnifications, $i);
+      $class: if($index == 1, "", ".ai-#{$index}x");
 
-      span {
-         top: floor((size($i) / 2) - (thickness($i) / 2));
-         left: h-padding($i);
-         right: h-padding($i);
-         height: thickness($i);
+      &#{$class}, &.ai-#{$i} {
+         width: $i;
+         height: $i;
 
-         &::before {
-           height: thickness($i);
-           top: 0 - thickness($i) - v-padding($i);
-         }
+         span {
+            top: floor(($i - thickness($i)) / 2);
+            left: h-padding($i);
+            right: h-padding($i);
+            height: thickness($i);
 
-         &::after {
-           height: thickness($i);
-           bottom: 0 - thickness($i) - v-padding($i);
+            &::before {
+              height: thickness($i);
+              top: 0 - thickness($i) - v-padding($i);
+            }
+
+            &::after {
+              height: thickness($i);
+              bottom: 0 - thickness($i) - v-padding($i);
+            }
          }
       }
    }
